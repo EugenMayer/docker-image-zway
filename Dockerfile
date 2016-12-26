@@ -39,7 +39,7 @@ COPY zwb_connect_start.sh /usr/local/bin/zwb_connect_start
 RUN /root/zway_installer.sh \
  && /etc/init.d/mongoose stop \
  && /etc/init.d/z-way-server stop \
- && /etc/init.d/zbw_connect stop
+ && /etc/init.d/zbw_connect stop \
  && update-rc.d mongoose remove \
  && update-rc.d z-way-server remove \
  && update-rc.d zbw_connect remove

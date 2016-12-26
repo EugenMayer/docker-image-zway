@@ -8,10 +8,10 @@ ENV INSTALL_DIR /opt
 RUN apt-get update \
  && apt-get upgrade -y \
  && apt-get install -y rpi-update \
- && apt-get install -y sharutils tzdata gawk libc-ares2 libavahi-compat-libdnssd-dev libarchive-dev
+ && apt-get install -y wget sharutils tzdata gawk libc-ares2 libavahi-compat-libdnssd-dev libarchive-dev
 
 # /etc/z-way/box_type will put the script into boxed mode - automated install
-RUN touch /etc/z-way/box_type \
+RUN mkdir -p /etc/z-way/ && touch /etc/z-way/box_type \
  && wget -q -O http://razberry.z-wave.me/install | bash
 
 # seems like in the end http://razberry.z-wave.me/z-way-server/z-way-server-RaspberryPiXTools-v2.2.5.tgz is used
@@ -22,12 +22,13 @@ RUN touch /etc/z-way/box_type \
 ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/opt/z-way-server/libs
 
 # stop all the systemd services, since we need to do this differently with docker
-RUN /etc/init.d/mongoose stop \
- && /etc/init.d/z-way-server stop \
- && update-rc.d z-way-server remove \
- && update-rc.d mongoose remove \
- && apt-get install -y supervisor \
- && mkdir -p /var/log/supervisor
+RUN apt-get install -y supervisor \
+     && mkdir -p /var/log/supervisor
+#/etc/init.d/mongoose stop \
+# && /etc/init.d/z-way-server stop \&&
+ #update-rc.d z-way-server remove \
+ #&& update-rc.d mongoose remove \&&
+
 
 COPY supervisor/supervisor_main.conf /etc/supervisor/conf.d/main.conf
 COPY supervisor/mongoose.conf /etc/supervisor/conf.d/mongoose.conf

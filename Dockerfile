@@ -12,7 +12,7 @@ RUN apt-get update \
 
 # /etc/z-way/box_type will put the script into boxed mode - automated install
 RUN mkdir -p /etc/z-way/ && touch /etc/z-way/box_type \
- && wget -q -O http://razberry.z-wave.me/install | bash
+ && wget -q -O - razberry.z-wave.me/install | bash
 
 # seems like in the end http://razberry.z-wave.me/z-way-server/z-way-server-RaspberryPiXTools-v2.2.5.tgz is used
 # as the zway-server

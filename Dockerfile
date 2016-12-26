@@ -39,6 +39,7 @@ COPY zbw_connect_start.sh /usr/local/bin/zbw_connect_start
 
 RUN /root/zway_installer.sh
 
+# disable the build-in startup scripts, since we use supervisord ...
 RUN /etc/init.d/mongoose stop \
  && /etc/init.d/z-way-server stop \
  && /etc/init.d/zbw_connect stop \

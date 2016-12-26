@@ -11,9 +11,10 @@ RUN apt-get update \
  && apt-get install -y wget sharutils tzdata gawk libc-ares2 libavahi-compat-libdnssd-dev libarchive-dev
 
 # /etc/z-way/box_type will put the script into boxed mode - automated install
-RUN mkdir -p /etc/z-way/ && touch /etc/z-way/box_type \
- && wget -q -O - razberry.z-wave.me/install | bash
+RUN mkdir -p /etc/z-way/ && touch /etc/z-way/box_type
+#\ && wget -q -O - razberry.z-wave.me/install | bash
 
+COPY zway_installer.sh /root/zway_installer.sh
 # seems like in the end http://razberry.z-wave.me/z-way-server/z-way-server-RaspberryPiXTools-v2.2.5.tgz is used
 # as the zway-server
 

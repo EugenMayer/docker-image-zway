@@ -32,12 +32,14 @@ RUN apt-get install -y supervisor \
 COPY supervisor/supervisor_main.conf /etc/supervisor/conf.d/main.conf
 COPY supervisor/mongoose.conf /etc/supervisor/conf.d/mongoose.conf
 COPY supervisor/zway-server.conf /etc/supervisor/conf.d/zway-server.conf
+COPY supervisor/zwb_connect.conf /etc/supervisor/conf.d/zwb_connect.conf
 
 COPY zway_installer.sh /root/zway_installer.sh
 COPY zwb_connect_start.sh /usr/local/bin/zwb_connect_start
 
-RUN /root/zway_installer.sh \
- && /etc/init.d/mongoose stop \
+RUN /root/zway_installer.sh
+
+RUN /etc/init.d/mongoose stop \
  && /etc/init.d/z-way-server stop \
  && /etc/init.d/zbw_connect stop \
  && update-rc.d mongoose remove \

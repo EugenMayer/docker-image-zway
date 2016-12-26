@@ -471,12 +471,12 @@ echo "Start mongoose http server"
 /etc/init.d/mongoose start
 
 # Prepare AMA0
-sed 's/console=ttyAMA0,115200//; s/kgdboc=ttyAMA0,115200//; s/console=serial0,115200//' /boot/cmdline.txt > /tmp/zway_install_cmdline.txt
-
-if [[ -f /etc/inittab ]]
-then
-	sed 's|[^:]*:[^:]*:respawn:/sbin/getty[^:]*ttyAMA0[^:]*||' /etc/inittab > /tmp/zway_install_inittab
-fi
+# sed 's/console=ttyAMA0,115200//; s/kgdboc=ttyAMA0,115200//; s/console=serial0,115200//' /boot/cmdline.txt > /tmp/zway_install_cmdline.txt
+#
+#if [[ -f /etc/inittab ]]
+#then
+#	sed 's|[^:]*:[^:]*:respawn:/sbin/getty[^:]*ttyAMA0[^:]*||' /etc/inittab > /tmp/zway_install_inittab
+#fi
 
 # Disable bluetooth Raspberry Pi 3
 #RPI_BOARD_REVISION=`grep Revision /proc/cpuinfo | cut -d: -f2 | tr -d " "`

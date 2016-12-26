@@ -479,40 +479,40 @@ then
 fi
 
 # Disable bluetooth Raspberry Pi 3
-RPI_BOARD_REVISION=`grep Revision /proc/cpuinfo | cut -d: -f2 | tr -d " "`
-if [[ $RPI_BOARD_REVISION ==  "a02082" || $RPI_BOARD_REVISION == "a22082" ]]
-then
-	echo "Raspberry Pi 3 Detected. Disabling Bluetooth"
-	systemctl disable hciuart
-	# Add "dtoverlay=pi3-miniuart-bt" to /boot/config.txt if needed
-	if [[ ! `grep "dtoverlay=pi3-miniuart-bt" /boot/config.txt` ]]
-	then
-		echo "Adding 'dtoverlay=pi3-miniuart-bt' to /boot/config.txt"
-		echo "dtoverlay=pi3-miniuart-bt" >> /boot/config.txt
-	fi
-
-	echo "!!! Update Raspberry Pi 3 Firmware for stability work with commands:"
-	echo "sudo apt-get install rpi-update"
-	echo "sudo rpi-update"
-fi
+#RPI_BOARD_REVISION=`grep Revision /proc/cpuinfo | cut -d: -f2 | tr -d " "`
+#if [[ $RPI_BOARD_REVISION ==  "a02082" || $RPI_BOARD_REVISION == "a22082" ]]
+#then
+#	echo "Raspberry Pi 3 Detected. Disabling Bluetooth"
+#	systemctl disable hciuart
+#	# Add "dtoverlay=pi3-miniuart-bt" to /boot/config.txt if needed
+#	if [[ ! `grep "dtoverlay=pi3-miniuart-bt" /boot/config.txt` ]]
+#	then
+#		echo "Adding 'dtoverlay=pi3-miniuart-bt' to /boot/config.txt"
+#		echo "dtoverlay=pi3-miniuart-bt" >> /boot/config.txt
+#	fi
+#
+#	echo "!!! Update Raspberry Pi 3 Firmware for stability work with commands:"
+#	echo "sudo apt-get install rpi-update"
+#	echo "sudo rpi-update"
+#fi
 
 # Transform old DevicesData.xml to new format
-(cd $ZWAY_DIR && test -x ./z-cfg-update && ls -1 config/zddx/*.xml | LD_LIBRARY_PATH=./libs xargs -l ./z-cfg-update)
+# (cd $ZWAY_DIR && test -x ./z-cfg-update && ls -1 config/zddx/*.xml | LD_LIBRARY_PATH=./libs xargs -l ./z-cfg-update)
 
-if diff /boot/cmdline.txt /tmp/zway_install_cmdline.txt > /dev/null || diff /etc/inittab /tmp/zway_install_inittab > /dev/null
-then
-	rm /tmp/zway_install_cmdline.txt /tmp/zway_install_inittab
-	# Starting z-way-server mongoose
-	echo "Starting z-way-server"
-	/etc/init.d/z-way-server start
-else
-	echo "Preparing AMA0 interface:"
-	echo " removing 'console=ttyAMA0,115200' and 'kgdboc=ttyAMA0,115200 and 'console=serial0,115200' from kernel command line (/boot/cmdline.txt)"
-	mv /tmp/zway_install_cmdline.txt /boot/cmdline.txt
-	echo " removing '*:*:respawn:/sbin/getty ttyAMA0' from /etc/inittab"
-	mv /tmp/zway_install_inittab /etc/inittab
-	echo "AMA0 interface reconfigured, please restart Raspberry"
-fi
+#if diff /boot/cmdline.txt /tmp/zway_install_cmdline.txt > /dev/null || diff /etc/inittab /tmp/zway_install_inittab > /dev/null
+#then
+#	rm /tmp/zway_install_cmdline.txt /tmp/zway_install_inittab
+#	# Starting z-way-server mongoose
+#	echo "Starting z-way-server"
+#	/etc/init.d/z-way-server start
+#else
+#	echo "Preparing AMA0 interface:"
+#	echo " removing 'console=ttyAMA0,115200' and 'kgdboc=ttyAMA0,115200 and 'console=serial0,115200' from kernel command line (/boot/cmdline.txt)"
+#	mv /tmp/zway_install_cmdline.txt /boot/cmdline.txt
+#	echo " removing '*:*:respawn:/sbin/getty ttyAMA0' from /etc/inittab"
+#	mv /tmp/zway_install_inittab /etc/inittab
+#	echo "AMA0 interface reconfigured, please restart Raspberry"
+#fi
 
 # Make sure to save changes
 sync

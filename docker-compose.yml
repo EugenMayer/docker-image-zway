@@ -5,4 +5,6 @@ services:
       context: .
     image: eugenmayer/zway
     ports:
-     - "8083:8083"
+      - "8083:8083"
+    devices:
+      - "/dev/ttyAMA0:/dev/ttyAMA0"

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "this little thingky calls back the z.wave.me servers to open a tunnel - you really do want to do this?"
+
 # Can we run?
 [[ -f /etc/zbw/flags/no_connection ]] && exit 0
 
@@ -59,6 +61,8 @@ do
     ssh -i /tmp/zbw_connect.priv -T -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile /dev/null' -o 'BatchMode yes' -o 'SendEnv ZBW_*' -o "ExitOnForwardFailure yes" -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" $FWD_OPTS $SSH_USER@$SERVER
     sleep 1
 done
+
+echo "this little thingky calls back the z.wave.me servers to open a tunnel - you really do want to do this?"
 
 exit 0
 

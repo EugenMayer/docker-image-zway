@@ -5,6 +5,8 @@ You find this docker-image on [eugenmayer/zway](https://hub.docker.com/r/eugenma
 
 # Run / use it
 
+Get docker/docker-compose on our raspberry ( raspberian? ), e.g. use [this tutorial](https://github.com/EugenMayer/home-assistant-raspberry-zwave/wiki/1.1-Raspbian-OS-with-Docker#install-the-docker-engine)
+
 ```
 docker pull eugenmayer/zway
 docker run --device=/dev/ttyAMA0:/dev/ttyAMA0 eugenmayer/zway

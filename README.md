@@ -3,7 +3,16 @@ A proper z-way docker image using proper pid1 setu, systemd / upstart.
 
 You find this docker-image on [eugenmayer/zway](https://hub.docker.com/r/eugenmayer/zway)
 
-# How
+# Run / use it
+
+```
+docker pull eugenmayer/zway
+docker run --device=/dev/ttyAMA0:/dev/ttyAMA0 eugenmayer/zway
+```
+
+while /dev/ttyAMA0 should reflect your tty UART port on your host. This one should fit a raspberry on a rpi with [disabled bluetooth](https://github.com/EugenMayer/home-assistant-raspberry-zwave/wiki/RPI3.-Raspberry-PI-3---GPIO-Zwave-controller-**only**:-Disable-Bluetooth), see.
+
+# How its made
 This image should run the latest image of [z-way](https://github.com/Z-Wave-Me/home-automation) for an ARM based build for e.g. an raspberry pi.
 A more brief descriptions can probably be found [here](https://www.z-wave.me/index.php?id=22).
 

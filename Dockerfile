@@ -49,3 +49,5 @@ RUN /etc/init.d/mongoose stop \
 
 ENTRYPOINT ["/usr/bin/supervisord", "-c"]
 CMD ["/etc/supervisor/supervisord.conf"]
+
+VOLUME /opt/z-way-server/config

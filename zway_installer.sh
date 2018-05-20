@@ -105,13 +105,13 @@ fi
 write_upi "40%\nGetting Z-Way for Raspberry Pi"
 #####################################
 
-FILE=`basename z-way-server/z-way-server-RaspberryPiXTools-v2.2.5.tgz`
+FILE=`basename z-way-server/z-way-server-RaspberryPiXTools-v2.3.7.tgz`
 if [[ -e $TEMP_DIR/$FILE ]]; then
 	echo "Removing duplicate of z-way installer"
 	rm -rf $TEMP_DIR/$FILE
 fi
 echo "Getting Z-Way for Raspberry Pi and installing"
-wget -4 http://razberry.z-wave.me/z-way-server/z-way-server-RaspberryPiXTools-v2.2.5.tgz -P $TEMP_DIR/
+wget -4 http://razberry.z-wave.me/z-way-server/z-way-server-RaspberryPiXTools-v2.3.7.tgz -P $TEMP_DIR/
 
 ##### The percentage of updates #####
 write_upi "50%\nExtracting new z-way-server"
@@ -196,7 +196,7 @@ else
 fi
 
 mkdir -p /etc/z-way
-echo "v2.2.5" > /etc/z-way/VERSION
+echo "v2.3.7" > /etc/z-way/VERSION
 echo "razberry" > /etc/z-way/box_type
 
 # Create Z-Way startup script
